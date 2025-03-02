@@ -5,16 +5,13 @@ terraform {
       version = "5.89.0"
     }
   }
+  backend "s3" {
+    
+  }
 }
 
 provider "aws" {
   region = "us-west-2"
-}
-
-
-terraform {
-  backend "s3" {
-  }
 }
 
 resource "aws_instance" "ec2" {
@@ -28,5 +25,5 @@ resource "aws_instance" "ec2" {
 # terraform init \
 #     -backend-config="key=dev/terraform.tfstate" \
 #     -backend-config="bucket=joindevops-remote-state-locking" \
-#     -backend-config="region=us-west-2" \
+#     -backend-config="region=us-east-1" \
 #     -backend-config="dynamodb_table=remote_state_lock_table"

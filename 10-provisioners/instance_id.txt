@@ -1,0 +1,1 @@
+'instance id: i-01fec4df1995ae488 : private_ip : 172.31.47.157' 

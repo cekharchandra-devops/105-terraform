@@ -75,6 +75,16 @@ Key Features of Terraform
     Maintains a state file that allows for easy rollback of changes in case of errors or issues.
     Supports automated disaster recovery processes.
 
+
+# 
+```
+terraform plan -out=tfplan  # Step 1: Generate plan
+terraform apply tfplan      # Step 2: Apply only approved changes
+terraform show -json tfplan > tfplan.json
+cat tfplan.json | jq
+
+```
+
 # State, Remote State, Locking
 
 * Terraform ensures that the declared infrastructure matches the actual infrastructure by refreshing the state.
