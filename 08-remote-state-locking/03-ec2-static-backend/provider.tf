@@ -7,7 +7,7 @@ terraform {
     }
     backend "s3" {
         bucket = "joindevops-remote-state-locking"
-        key    = "/dev/terraform.tfstate"
+        key    = "dev/terraform.tfstate"
         region = "us-east-1"
         dynamodb_table = "remote_state_lock_table"
         encrypt = true

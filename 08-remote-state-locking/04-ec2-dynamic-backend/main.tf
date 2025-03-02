@@ -26,7 +26,7 @@ resource "aws_instance" "ec2" {
 }
 
 # terraform init \
-#     -backend-config="key=dev/ec2.tfstate" \
-#     -backend-config="bucket=terraform-state-dcube" \
+#     -backend-config="key=dev/terraform.tfstate" \
+#     -backend-config="bucket=joindevops-remote-state-locking" \
 #     -backend-config="region=us-west-2" \
-#     -backend-config="dynamodb_table=terraform_state_lock"
+#     -backend-config="dynamodb_table=remote_state_lock_table"
