@@ -74,3 +74,29 @@ Key Features of Terraform
 
     Maintains a state file that allows for easy rollback of changes in case of errors or issues.
     Supports automated disaster recovery processes.
+
+# State, Remote State, Locking
+
+* Terraform ensures that the declared infrastructure matches the actual infrastructure by refreshing the state.
+Whenever a user executes a Terraform command, it first refreshes the state by retrieving the current infrastructure state from the cloud provider and updating the .tfstate file. Then, Terraform compares the declared infrastructure in the configuration files with the refreshed state.
+If any differences are found, Terraform determines the necessary changes to bring the infrastructure into the desired state.
+For example, if a resource has been deleted in the backend, Terraform will prompt the user to recreate it.
+
+* Maintaining Terraform state locally can cause issues when multiple users are managing the same infrastructure. Here’s why:
+
+    State Conflicts – If two users apply changes from their local machines, Terraform won't be aware of the other's changes, potentially leading to duplicate resources or unintended modifications.
+
+    Lack of Locking – When using local state, there’s no built-in mechanism to prevent concurrent updates, which can corrupt the state file.
+
+    Manual State Syncing – Users would have to manually share and update the .tfstate file, increasing the risk of inconsistencies.
+
+✅ Solution: Use Remote State
+Storing state remotely (e.g., in Amazon S3 with DynamoDB locking, Terraform Cloud, or an external backend like Consul) ensures:
+
+✔ Consistency – All users work with the same up-to-date state.
+
+✔ State Locking – Prevents concurrent updates and corruption.
+
+✔ Collaboration – Multiple users can safely manage infrastructure.🚀
+
+Refer 08-remote-state-locking repo for how to acheive remote state and locking.
